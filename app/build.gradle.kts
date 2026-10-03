@@ -51,4 +51,17 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+
+    implementation(libs.navigation.compose)
+
+    implementation(libs.coil.compose)
 }
