@@ -22,11 +22,12 @@ class MainActivity : ComponentActivity() {
 
                 val viewModel: ProductViewModel = viewModel()
                 val uiState = viewModel.uiState.collectAsState()
+                val searchQuery = viewModel.currentSearchQuery.collectAsState()
 
                 ProductScreen(
                     uiState = uiState.value,
-                    searchQuery = "",
-                    onSearchQueryChange = {},
+                    searchQuery = searchQuery.value,
+                    onSearchQueryChange = viewModel::onSearchQueryChange,
                     onProductClick = {}
                 )
             }
