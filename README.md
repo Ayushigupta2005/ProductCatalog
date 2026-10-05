@@ -6,15 +6,15 @@ An Android product catalog application built with **Kotlin and Jetpack Compose**
 
 ### Product Catalog
 
-![Product Catalog](screenshots/products.png)
+![Product Catalog](screenshots/products.jpeg)
 
 ### Product Details
 
-![Product Details](screenshots/product-details.png)
+![Product Details](screenshots/product-details.jpeg)
 
 ### Cart
 
-![Cart](screenshots/cart.png)
+![Cart](screenshots/cart.jpeg)
 
 ## Features
 
