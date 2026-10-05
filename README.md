@@ -3,18 +3,11 @@
 An Android product catalog application built with **Kotlin and Jetpack Compose**, featuring product browsing, search, product details, and a fully persistent offline cart.
 
 ## Screenshots
-
-### Product Catalog
-
-![Product Catalog](screenshots/products.jpeg)
-
-### Product Details
-
-![Product Details](screenshots/product-details.jpeg)
-
-### Cart
-
-![Cart](screenshots/cart.jpeg)
+<p align="center">
+  <img src="screenshots/products.jpeg" width="250">
+  <img src="screenshots/product-details.jpeg" width="250">
+  <img src="screenshots/cart.jpeg" width="250">
+</p>
 
 ## Features
 
