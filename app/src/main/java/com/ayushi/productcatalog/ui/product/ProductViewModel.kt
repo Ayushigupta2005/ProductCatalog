@@ -64,7 +64,7 @@ class ProductViewModel : ViewModel() {
                 )
             } catch (e: Exception) {
                 _uiState.value = ProductUiState(
-                    error = "Unable to load products. Please try again."
+                    error = "Unable to load products. Please check your connection and try again."
                 )
             }
         }
@@ -85,9 +85,18 @@ class ProductViewModel : ViewModel() {
                 )
             } catch (e: Exception) {
                 _uiState.value = ProductUiState(
-                    error = "Unable to search products. Please try again."
+                    error = "Unable to search products. Please check your connection and try again."
                 )
             }
         }
     }
+
+    fun retry() {
+        if (searchQuery.value.isBlank()) {
+            loadProducts()
+        } else {
+            searchProducts(searchQuery.value)
+        }
+    }
+
 }

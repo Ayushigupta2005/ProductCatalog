@@ -28,13 +28,21 @@ import com.ayushi.productcatalog.R
 import androidx.compose.ui.tooling.preview.Preview
 import com.ayushi.productcatalog.data.model.Product
 import com.ayushi.productcatalog.ui.theme.ProductCatalogTheme
-
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material3.Button
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 @Composable
 fun ProductScreen(
     uiState: ProductUiState,
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit,
-    onProductClick: (Int) -> Unit
+    onProductClick: (Int) -> Unit,
+    onCartClick: () -> Unit,
+    onRetry: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -52,11 +60,25 @@ fun ProductScreen(
                 )
         ) {
 
-            Text(
-                text = "Discover",
-                style = MaterialTheme.typography.headlineMedium
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Discover",
+                    style = MaterialTheme.typography.headlineMedium
+                )
 
+                IconButton(
+                    onClick = onCartClick
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_cart),
+                        contentDescription = "Cart"
+                    )
+                }
+            }
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
@@ -93,7 +115,11 @@ fun ProductScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = "Popular products",
+                text = if (searchQuery.isBlank()) {
+                    "Popular products"
+                } else {
+                    "Search results"
+                },
                 style = MaterialTheme.typography.titleLarge
             )
 
@@ -112,13 +138,29 @@ fun ProductScreen(
 
             uiState.error != null -> {
                 Box(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 32.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = uiState.error,
-                        style = MaterialTheme.typography.bodyLarge
-                    )
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = uiState.error,
+                            style = MaterialTheme.typography.bodyLarge,
+                            textAlign = TextAlign.Center
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Button(
+                            onClick = onRetry
+                        ) {
+                            Text("Retry")
+                        }
+                    }
                 }
             }
 
@@ -217,7 +259,9 @@ fun ProductScreenPreview() {
             ),
             searchQuery = "",
             onSearchQueryChange = {},
-            onProductClick = {}
+            onProductClick = {},
+            onCartClick = {},
+            onRetry = {}
         )
     }
 }

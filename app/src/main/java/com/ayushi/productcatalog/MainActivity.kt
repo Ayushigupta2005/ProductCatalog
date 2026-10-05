@@ -4,32 +4,25 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.collectAsState
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ayushi.productcatalog.ui.product.ProductScreen
-import com.ayushi.productcatalog.ui.product.ProductViewModel
+import coil.Coil
+import com.ayushi.productcatalog.ui.navigation.AppNavigation
 import com.ayushi.productcatalog.ui.theme.ProductCatalogTheme
+import com.ayushi.productcatalog.util.createImageLoader
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Coil.setImageLoader {
+            createImageLoader(applicationContext)
+        }
+
         enableEdgeToEdge()
 
         setContent {
             ProductCatalogTheme {
-
-                val viewModel: ProductViewModel = viewModel()
-                val uiState = viewModel.uiState.collectAsState()
-                val searchQuery = viewModel.currentSearchQuery.collectAsState()
-
-                ProductScreen(
-                    uiState = uiState.value,
-                    searchQuery = searchQuery.value,
-                    onSearchQueryChange = viewModel::onSearchQueryChange,
-                    onProductClick = {}
-                )
+                AppNavigation()
             }
         }
     }
