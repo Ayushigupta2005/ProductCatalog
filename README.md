@@ -1,4 +1,4 @@
-# Product Catalog & Offline Cart
+# Product Catalog
 
 An Android product catalog application built with **Kotlin and Jetpack Compose**, featuring product browsing, search, product details, and a fully persistent offline cart.
 
